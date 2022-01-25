@@ -1,0 +1,7 @@
+@use "../util" as *;
+
+.container {
+  min-height: 100vh;
+  max-width: rem(1440);
+  margin: 0 auto;
+}
