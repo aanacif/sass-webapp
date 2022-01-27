@@ -7,7 +7,15 @@ const cssnano = require('cssnano')
 const babel = require('gulp-babel')
 const terser = require('gulp-terser')
 const browsersync = require('browser-sync').create()
+const webp = require('gulp-webp')
 
+
+//Exportng images to WebP, source folder: /images dest: dist/images
+const imageExport = () => {
+  return src('app/images/*.{jpg,png}')
+    .pipe(webp({ quality: 75 }))
+    .pipe(dest('dist/images'))
+}
 
 // Conpiling .scss files into .css files, in the /dist folder
 function scssTask() {
@@ -49,10 +57,10 @@ function browserSyncReload(cb) {
 function watchTask() {
   watch('*.html', browserSyncReload);
   watch(
-    ['app/scss/**/*.scss', 'app/**/*.js'],
-    series(scssTask, jsTask, browserSyncReload)
+    ['app/scss/**/*.scss', 'app/**/*.js', 'app/images/*.{png,jpg}'],
+    series(scssTask, jsTask, browserSyncReload, imageExport)
   );
 }
 
 // Default Gulp Task
-exports.default = series(scssTask, jsTask, browserSyncServe, watchTask);
+exports.default = series(scssTask, jsTask, browserSyncServe, imageExport, watchTask);

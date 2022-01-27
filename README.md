@@ -2,4 +2,4 @@
 
 ### Links
 
-- Live Site URL: [https://github.com/aanacif](https://github.com/aanacif)
+- Generator Link: [https://github.com/aanacif/generator-sass-webapp](https://github.com/aanacif/generator-sass-webapp)
